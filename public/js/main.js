@@ -1,82 +1,177 @@
-
-
-  document.addEventListener("DOMContentLoaded", function () {
-    const cardapioLink = document.querySelector(".ul");
-    cardapioLink.addEventListener("click", (event) => {
-      event.preventDefault(); // Prevent default link behavior
-      scrollToDonutCards();
-    });
-  });
-
-  //// Selecionar o elemento do rodapé
-  function scrollToFooter() {
-    const footerSection = document.querySelector('footer'); 
-    footerSection.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    const phoneIcon = document.querySelector('.icon-phone');
-    phoneIcon.addEventListener('click', (event) => {
-      event.preventDefault();
-      scrollToFooter();
-    });
-  });
-
-  //criar donut
-  const coberturaCheckboxes = document.querySelectorAll('input[name="cobertura"]');
-  const recheioCheckboxes = document.querySelectorAll('input[name="recheio"]');
-  const quantityInput = document.querySelector('.quantity');
-  const totalPriceSpan = document.getElementById('totalPrice');
-
-  coberturaCheckboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', updateTotalPrice);
-  });
-
-  recheioCheckboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', updateTotalPrice);
-  });
-
-  quantityInput.addEventListener('input', updateTotalPrice);
-
-  
-  function updateTotalPrice() {
-    let price = 5; // Base price for 1 cobertura and 1 recheio
-
-    // Count selected checkboxes for cobertura and recheio
-    const selectedCoberturas = Array.from(coberturaCheckboxes).filter(checkbox => checkbox.checked).length;
-    const selectedRecheios = Array.from(recheioCheckboxes).filter(checkbox => checkbox.checked).length;
-
-    // Add extra price for additional coberturas and recheios
-    if (selectedCoberturas > 1) {
-      price += (selectedCoberturas - 1) * 2.5;
-    }
-
-    if (selectedRecheios > 1) {
-      price += (selectedRecheios - 1) * 2.5;
-    }
-
-    // Update total price display
-    totalPriceSpan.textContent = price.toFixed(2);
-  }
-
-  //cart
-  window.addEventListener('scroll', function () {
+document.addEventListener('DOMContentLoaded', function () {
+  const addToCartButtons = document.querySelectorAll('.btn-add-to-cart');
   const cartSidebar = document.querySelector('.cart-sidebar');
-  const cardapioDiv = document.querySelector('.cardapio');
-  const cardapioRect = cardapioDiv.getBoundingClientRect();
+  const cartToSidebar = document.querySelector('.cart-sidebar .items-list');
+  const emptyCartMessage = document.querySelector('.empty-cart-message');
+  const totalDisplay = document.querySelector('.cart-footer h4:last-child');
   
-  if (cardapioRect.top > 0) {
-    cartSidebar.style.top = `${cardapioRect.top}px`;
-  } else if (cardapioRect.bottom < window.innerHeight) {
-    cartSidebar.style.top = `${cardapioRect.bottom - cartSidebar.offsetHeight}px`;
-  } else {
-    cartSidebar.style.top = `0px`;
+  // Função para verificar se o carrinho está vazio
+  function updateEmptyCartMessage() {
+    const hasItems = cartToSidebar.querySelector('.cart-items');
+    if (!hasItems) {
+      emptyCartMessage.style.display = 'block';
+    } else {
+      emptyCartMessage.style.display = 'none';
+    }
   }
+
+  // Função para atualizar o total
+  function updateTotal() {
+    let total = 0;
+    const cartItems = cartToSidebar.querySelectorAll('.cart-items');
+    
+    cartItems.forEach(item => {
+      const price = parseFloat(item.getAttribute('data-price'));
+      const quantity = parseInt(item.querySelector('.quantity').value, 10);
+      total += price * quantity;
+    });
+    
+    totalDisplay.textContent = `R$ ${total.toFixed(2)}`;
+  }
+
+  // Função para incrementar a quantidade
+  function incrementQuantity(cartItem) {
+    const quantityInput = cartItem.querySelector('.quantity');
+    if (quantityInput) {
+      let quantity = parseInt(quantityInput.value, 10);
+      quantityInput.value = quantity + 1;
+      updateTotal();
+    }
+  }
+
+  // Função para decrementar a quantidade
+  function decrementQuantity(cartItem) {
+    const quantityInput = cartItem.querySelector('.quantity');
+    if (quantityInput) {
+      let quantity = parseInt(quantityInput.value, 10);
+      quantity -= 1;
+
+      if (quantity <= 0) {
+        cartItem.remove();
+        const itemName = cartItem.getAttribute('data-name');
+        const itemId = cartItem.getAttribute('data-id');
+        removeAddedMessage(itemId);
+      } else {
+        quantityInput.value = quantity;
+      }
+
+      updateTotal();
+      updateEmptyCartMessage();
+    }
+  }
+
+  // Função para adicionar o item ao carrinho
+  function addToCart(event) {
+    const button = event.currentTarget;
+    const itemId = button.getAttribute('data-id');
+    const itemName = button.getAttribute('data-name');
+    const itemPrice = button.getAttribute('data-price');
+    const itemImg = button.getAttribute('data-img');
+    const itemDescription = button.getAttribute('data-description');
+    const donutCard = button.closest('.donut-card');
+    const addedMessage = donutCard.querySelector('.added-message');
+
+    const existingCartItem = cartToSidebar.querySelector(`.cart-items[data-name="${itemName}"]`);
+
+    if (existingCartItem) {
+      incrementQuantity(existingCartItem);
+    } else {
+      const cartItemHTML = `
+        <div class="cart-items" data-name="${itemName}" data-price="${itemPrice}" data-id="${itemId}">
+          <div>
+            <img class="img-item" src="${itemImg}" alt="${itemName}" />
+          </div>
+          <div class="info-item">
+            <h4 class="info-title">${itemName}</h4>
+            <p class="info-description">${itemDescription}</p>
+            <div class="donut-quantity">
+              <div class="quantity-controls">
+                <button class="btn-quantity btn-decrement">-</button>
+                <input type="text" class="quantity" value="1" readonly />
+                <button class="btn-quantity btn-increment">+</button>
+              </div>
+              <h4 class="info-title-preco">R$: ${itemPrice}</h4>
+            </div>
+          </div>
+        </div>
+      `;
+
+      cartToSidebar.insertAdjacentHTML('beforeend', cartItemHTML);
+
+      const newCartItem = cartToSidebar.querySelector(`.cart-items[data-name="${itemName}"]`);
+      const decrementButton = newCartItem.querySelector('.btn-decrement');
+      const incrementButton = newCartItem.querySelector('.btn-increment');
+
+      if (decrementButton && incrementButton) {
+        decrementButton.addEventListener('click', () => decrementQuantity(newCartItem));
+        incrementButton.addEventListener('click', () => incrementQuantity(newCartItem));
+      }
+
+      // Exibe o carrinho apenas se for o primeiro item adicionado
+      if (cartToSidebar.querySelectorAll('.cart-items').length === 1) {
+        cartSidebar.style.display = 'block';
+      }
+    }
+
+    // Exibe a mensagem "Item adicionado ao carrinho"
+    if (addedMessage) {
+      addedMessage.style.display = 'block';
+    }
+
+    updateEmptyCartMessage();
+    updateTotal();
+  }
+
+  // Função para remover a mensagem "Item adicionado ao carrinho"
+  function removeAddedMessage(itemId) {
+    const donutCard = document.querySelector(`.donut-card[data-id="${itemId}"]`);
+    const addedMessage = donutCard ? donutCard.querySelector('.added-message') : null;
+    if (addedMessage) {
+      addedMessage.style.display = 'none';
+    }
+  }
+
+  // Adiciona os event listeners aos botões de adicionar ao carrinho
+  addToCartButtons.forEach(button => {
+    button.addEventListener('click', addToCart);
+  });
+
+  // Verifica se o carrinho está vazio ao carregar a página
+  updateEmptyCartMessage();
 });
 
-//rolar p cart
+
+
+function scrollToFooter() {
+  const footerSection = document.querySelector('footer');
+  footerSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  const phoneIcon = document.querySelector('.icon-phone');
+  phoneIcon.addEventListener('click', (event) => {
+    event.preventDefault();
+    scrollToFooter();
+  });
+});
+
+ //// Selecionar o elemento do rodapé
+ function scrollToFooter() {
+  const footerSection = document.querySelector('footer'); 
+  footerSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  const phoneIcon = document.querySelector('.icon-phone');
+  phoneIcon.addEventListener('click', (event) => {
+    event.preventDefault();
+    scrollToFooter();
+  });
+});
+
+//rolar para a bag
 function scrollToCart() {
-  const footerSection = document.querySelector('.cart-sidebar'); 
+  const footerSection = document.querySelector('.bag'); 
   footerSection.scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -88,113 +183,39 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-//rolar p cardapio
-function scrollToDonutCards() {
-  const footerSection = document.querySelector('.cardapio'); 
-  footerSection.scrollIntoView({ behavior: 'smooth' });
-}
-
 document.addEventListener('DOMContentLoaded', function () {
-  const phoneIcon = document.querySelector('');
+  const phoneIcon = document.querySelector('.icon-carrinho');
   phoneIcon.addEventListener('click', (event) => {
     event.preventDefault();
     scrollToFooter();
   });
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+  const scrollLink = document.getElementById('scroll-to-cardapio');
+  const cardapioDiv = document.querySelector('.cardapio');
 
-
-//brir carrinho
-
-
-
-
-// Seleciona todos os botões de adicionar ao carrinho no cardápio
-const addToCartButtons = document.querySelectorAll('.btn-add-to-cart');
-const cartToSidebar = document.querySelector('.cart-sidebar .items-list');
-const emptyCartMessage = document.querySelector('.empty-cart-message');
-
-// Função para adicionar o item ao carrinho
-function addToCart(event) {
-  // Remove a mensagem de carrinho vazio, se existir
-  if (emptyCartMessage) {
-    emptyCartMessage.style.display = 'none';
+  // Função para rolar até a div cardapio
+  function scrollToCardapio(event) {
+    event.preventDefault(); // Impede o comportamento padrão do link
+    cardapioDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  const button = event.currentTarget;
-
-  // Captura os dados do item (nome, preço, imagem)
-  const itemName = button.getAttribute('data-name');
-  const itemPrice = button.getAttribute('data-price');
-  const itemImg = button.getAttribute('data-img');
-
-  // Verifica se o item já existe no carrinho
-  const existingCartItem = cartToSidebar.querySelector(`.cart-items[data-name="${itemName}"]`);
-
-  if (existingCartItem) {
-    // Se o item já existe, aumenta a quantidade
-    const quantityInput = existingCartItem.querySelector('.quantity');
-    quantityInput.value = parseInt(quantityInput.value) + 1;
-  } else {
-    // Se o item não existe, cria um novo
-    const cartItemHTML = `
-      <div class="cart-items" data-name="${itemName}">
-        <div>
-          <img class="img-item" src="${itemImg}" alt="${itemName}" />
-        </div>
-        <div class="info-item">
-          <h4 class="info-title">${itemName}</h4>
-          <div class="donut-quantity">
-            <div class="quantity-controls">
-              <button class="btn-quantity btn-decrement">-</button>
-              <input type="text" class="quantity" value="1" readonly />
-              <button class="btn-quantity btn-increment">+</button>
-            </div>
-            <h4 class="info-title-preco">R$: ${itemPrice}</h4>
-          </div>
-        </div>
-      </div>
-    `;
-
-    // Adiciona o novo item ao final da lista de itens no carrinho
-    cartToSidebar.insertAdjacentHTML('beforeend', cartItemHTML);
-
-    // Adiciona eventos de clique para os botões de incrementar/decrementar
-    const newCartItem = cartToSidebar.querySelector(`.cart-items[data-name="${itemName}"]`);
-    newCartItem.querySelector('.btn-decrement').addEventListener('click', () => handleQuantityChange(newCartItem, -1));
-    newCartItem.querySelector('.btn-increment').addEventListener('click', () => handleQuantityChange(newCartItem, 1));
-  }
-}
-
-// Adiciona o evento de clique em todos os botões "Adicionar ao Carrinho"
-addToCartButtons.forEach(button => {
-  button.addEventListener('click', addToCart);
+  // Adiciona o evento de clique ao link
+  scrollLink.addEventListener('click', scrollToCardapio);
 });
 
-// Função para manipular a mudança de quantidade
-function handleQuantityChange(cartItem, change) {
-  const quantityInput = cartItem.querySelector('.quantity');
-  let quantity = parseInt(quantityInput.value, 10);
+document.addEventListener('DOMContentLoaded', function () {
+  const scrollLink = document.getElementById('scroll-to-create-donut');
+  const cardapioDiv = document.querySelector('.form');
 
-  quantity += change;
-
-  if (quantity <= 0) {
-    // Remove o item do carrinho se a quantidade for menor ou igual a 0
-    cartItem.remove();
-  } else {
-    quantityInput.value = quantity;
+  // Função para rolar até a div cardapio
+  function scrollToCardapio(event) {
+    event.preventDefault(); // Impede o comportamento padrão do link
+    cardapioDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  // Verifica se o carrinho está vazio e exibe a mensagem se necessário
-  updateEmptyCartMessage();
-}
-
-// Função para atualizar a mensagem de carrinho vazio
-function updateEmptyCartMessage() {
-  if (cartToSidebar.children.length === 0) {
-    emptyCartMessage.style.display = 'block';
-  } else {
-    emptyCartMessage.style.display = 'none';
-  }
-}
+  // Adiciona o evento de clique ao link
+  scrollLink.addEventListener('click', scrollToCardapio);
+});
 
