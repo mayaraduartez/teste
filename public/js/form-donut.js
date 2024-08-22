@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
           return;
       }
 
-      // Coleta as seleções de cobertura e recheio
+      // Coleta as seleções de cobertura, recheio e quantidade
       const selectedCobertura = Array.from(coberturaCheckboxes)
           .filter(checkbox => checkbox.checked)
           .map(checkbox => checkbox.value)
@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
           .filter(checkbox => checkbox.checked)
           .map(checkbox => checkbox.value)
           .join(', ');
+      const quantity = parseInt(quantityInput.value, 10);
 
       // Define as informações do item
       const itemName = 'Donut Personalizado';
@@ -90,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
                   <div class="donut-quantity">
                       <div class="quantity-controls">
                           <button class="btn-quantity btn-decrement">-</button>
-                          <input type="text" class="quantity" value="1" readonly />
+                          <input type="text" class="quantity" value="${quantity}" readonly />
                           <button class="btn-quantity btn-increment">+</button>
                       </div>
                       <h4 class="info-title-preco">R$: ${itemPrice}</h4>
