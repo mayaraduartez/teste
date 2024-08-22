@@ -192,35 +192,40 @@
             </div>
           </div>
         </div>
+
         <div class="form">
           <div class="form-donut">
-            <form method="post" action="/pedido">
-              <h3>Seu Donut Perfeito</h3>
+            <form id="donutForm">
+              <h3>Cire Seu Donut Perfeito</h3>
+          
               <h3>Cobertura</h3>
-              <div class="sabores">
-                <input type="checkbox" name="cobertura" value="Baunilha">Baunilha</input>
-                <input type="checkbox" name="cobertura" value="Chocolate">Chocolate</input>
-                <input type="checkbox" name="cobertura" value="Morango">Morango</input>
-                <input type="checkbox" name="cobertura" value="Caramelo">Caramelo</input>
+              <div id="cobertura" class="sabores">
+                <input type="checkbox" name="cobertura" value="Baunilha" data-price="2.00"> Baunilha</input>
+                <input type="checkbox" name="cobertura" value="Chocolate" data-price="2.50"> Chocolate</input>
+                <input type="checkbox" name="cobertura" value="Morango" data-price="2.00"> Morango</input>
+                <input type="checkbox" name="cobertura" value="Caramelo" data-price="3.00"> Caramelo</input>
               </div>
+          
               <h3>Recheio</h3>
-              <div>
-                <input type="checkbox" name="recheio" value="Brigadeiro">Brigadeiro</input>
-                <input type="checkbox" name="recheio" value="Beijinho">Beijinho</input>
-                <input type="checkbox" name="recheio" value="Doce de leite">Doce de leite</input>
-                <input type="checkbox" name="recheio" value="Nutella">Nutella</input>
+              <div id="recheio">
+                <input type="checkbox" name="recheio" value="Brigadeiro" data-price="3.00"> Brigadeiro</input>
+                <input type="checkbox" name="recheio" value="Beijinho" data-price="3.50"> Beijinho</input>
+                <input type="checkbox" name="recheio" value="Doce de leite" data-price="3.00"> Doce de leite</input>
+                <input type="checkbox" name="recheio" value="Nutella" data-price="4.00"> Nutella</input>
               </div>
+          
               <h3>Quantidade</h3>
               <div>
-                <button class="btn-quantity-create btn-decrement">-</button>
+                <button type="button" class="btn-quantity-create btn-decrement-create">-</button>
                 <input type="text" class="quantity-create" value="1" readonly />
-                <button class="btn-quantity-create btn-increment">+</button>
+                <button type="button" class="btn-quantity-create btn-increment-create">+</button>
               </div>
+          
               <h3>Total: R$ <span id="totalPrice" style="color: #cc7f91">00,00</span></h3>
-              <button class="btn " style="border: none;">Adicionar no carrinho</button>
+              <button class="btn-form" style="border: none;" id="addToCart">Adicionar no carrinho</button>
             </form>
           </div>
-          </section>
+          
         </div>
       </div>
 
@@ -291,6 +296,8 @@
 
   <script src="/js/main.js"></script>
   <script src="/js/cart-fixed.js"></script>
+  <script src="/js/form-donut.js"></script>
+  <script src="/js/total-price.js"></script>
 
 </body>
 

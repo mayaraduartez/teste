@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const cartSidebar = document.querySelector('.cart-sidebar');
   const cartToSidebar = document.querySelector('.cart-sidebar .items-list');
   const emptyCartMessage = document.querySelector('.empty-cart-message');
-  const totalDisplay = document.querySelector('.cart-footer h4:last-child');
   
   // Função para verificar se o carrinho está vazio
   function updateEmptyCartMessage() {
@@ -15,19 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Função para atualizar o total
-  function updateTotal() {
-    let total = 0;
-    const cartItems = cartToSidebar.querySelectorAll('.cart-items');
-    
-    cartItems.forEach(item => {
-      const price = parseFloat(item.getAttribute('data-price'));
-      const quantity = parseInt(item.querySelector('.quantity').value, 10);
-      total += price * quantity;
-    });
-    
-    totalDisplay.textContent = `R$ ${total.toFixed(2)}`;
-  }
+
 
   // Função para incrementar a quantidade
   function incrementQuantity(cartItem) {
@@ -54,9 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
       } else {
         quantityInput.value = quantity;
       }
-
-      updateTotal();
       updateEmptyCartMessage();
+      updateTotal();
     }
   }
 
@@ -218,4 +204,35 @@ document.addEventListener('DOMContentLoaded', function () {
   // Adiciona o evento de clique ao link
   scrollLink.addEventListener('click', scrollToCardapio);
 });
+
+//atualiza total do form
+document.querySelector('.btn-increment-create').addEventListener('click', function() {
+  modifyQuantity(1);
+});
+
+document.querySelector('.btn-decrement-create').addEventListener('click', function() {
+  modifyQuantity(-1);
+});
+
+function modifyQuantity(amount) {
+  const quantityInput = document.querySelector('.quantity-create');
+  let currentQuantity = parseInt(quantityInput.value);
+  const totalPriceElement = document.getElementById('totalPrice');
+
+  currentQuantity += amount;
+  
+  if (currentQuantity < 1) {
+    currentQuantity = 1;
+  }
+
+  quantityInput.value = currentQuantity;
+
+  // Pega o valor total atual (removendo "R$ " e substituindo "," por ".")
+  let currentTotal = parseFloat(totalPriceElement.innerText.replace('R$ ', '').replace(',', '.'));
+
+  // Atualiza o total multiplicando pelo número de donuts
+  const newTotal = (currentTotal / (currentQuantity - amount)) * currentQuantity;
+  
+  totalPriceElement.innerText = `R$ ${newTotal.toFixed(2).replace('.', ',')}`;
+}
 
