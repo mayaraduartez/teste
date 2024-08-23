@@ -236,3 +236,31 @@ function modifyQuantity(amount) {
   totalPriceElement.innerText = `R$ ${newTotal.toFixed(2).replace('.', ',')}`;
 }
 
+//filtro do menu
+document.addEventListener('DOMContentLoaded', function() {
+  const menuItems = document.querySelectorAll('.menu-options li');
+  const cards = document.querySelectorAll('.donut-card');
+
+  menuItems.forEach(function(menuItem) {
+    menuItem.addEventListener('click', function() {
+      const selectedCategory = this.getAttribute('data-category');
+
+ 
+      menuItems.forEach(function(item) {
+        item.classList.remove('active');
+      });
+
+
+      this.classList.add('active');
+
+
+      cards.forEach(function(card) {
+        if (selectedCategory === 'all' || card.classList.contains(selectedCategory)) {
+          card.classList.remove('hidden'); 
+        } else {
+          card.classList.add('hidden'); 
+        }
+      });
+    });
+  });
+});

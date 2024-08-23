@@ -245,7 +245,7 @@ input:checked+label .action span.option-2 {
 .menu-title {
   font-size: 28px;
   font-weight: bold;
-  color: #b44a60;
+  color: #c23350;
 }
 
 .favorite {
@@ -299,11 +299,15 @@ input:checked+label .action span.option-2 {
 .btn-add-to-cart {
   padding: 5px;
   margin-left: 8px;
-  background-color: #b44a60;
+  background-color: #e15c7c ;
   color: #fff;
   border: none;
   border-radius: 25px;
   cursor: pointer;
+}
+
+.btn-add-to-cart:hover{
+  background-color: #f38aa5;
 }
 
 .cards-icon {
@@ -357,8 +361,6 @@ input:checked+label .action span.option-2 {
   display: block; 
   flex-direction: column;
 }
-
-
 
 .donut-card.hidden {
   display: none;
@@ -469,13 +471,18 @@ header {
   display: inline-block;
   padding: 10px 20px;
   margin-top: 30px;
-  background-color: #ff99cc;
-  border-color: #ff99cc;
+  background-color: #e15c7c;
+  border-color: #e15c7c;
   border-radius: 0;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
   font-size: 16px;
+}
+
+.btn-form:hover{
+  background-color: #f38aa5;
+
 }
 
 .icon-logo {
@@ -826,6 +833,7 @@ footer>div {
 .title {
   font-size: 25px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #c23350 ;
 }
 
 .button-footer{
@@ -839,6 +847,7 @@ footer>div {
 
 .info-title-preco{
   font-size: 13px;
+  color: #c23350;
 }
 
 .donut-quantity {
@@ -860,10 +869,15 @@ footer>div {
   height: 25px;
   border: none;
   border-radius: 50%;
-  background-color: #ff99cc;
+  background-color: #f7acbf ;
   color: #fff;
   font-size: 16px;
   cursor: pointer;
+}
+
+.btn-quantity-create:hover{
+  background-color: #f38aa5;
+
 }
 
 .quantity-create {
@@ -877,7 +891,7 @@ footer>div {
 .bag{
   display: flex;
   justify-content: end;
-  background-color: #f5a8a8;
+  background-color: #f7acbf ;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -886,6 +900,10 @@ footer>div {
   justify-content: center;
   color: #ffff;
   cursor: pointer;
+}
+
+.bag:hover{
+  background-color: #f38aa5;
 }
 
 .bag-div{
@@ -957,7 +975,7 @@ a {
 }
 
 .favoritos-table th {
-  background-color: #ffcccc;
+  background-color: #f38aa5 ;
   color: #333;
 }
 
@@ -973,7 +991,7 @@ a {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #ff6666;
+  background-color: #c23350 ;
   border: none;
   font-weight: 600;
   display: flex;
@@ -999,3 +1017,19 @@ a {
   fill: rgb(255, 252, 252);
 }
 
+.info-empresa{
+  min-height: 100vh;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10%;
+  justify-content: space-around;
+  padding: 30px;;
+}
+
+.img-container{
+  width: 40vw;
+  height: auto;
+  border-radius: 50%;
+}
