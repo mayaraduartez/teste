@@ -11,10 +11,12 @@
 
 <body>
   <header>
-    <div class="logo">
-      <img class="icon-logo" src="img/rosquinha.png" />
-      <h1>DONUTS</h1>
-    </div>
+    <a href="/">
+      <div class="logo">
+        <img class="icon-logo" src="img/rosquinha.png" />
+        <h1>DONUTS</h1>
+      </div>
+    </a>
     <div class="menu">
       <a href="" class="ul" id="scroll-to-cardapio">Cardápio</a>
       <a href="" class="ul" id="scroll-to-create-donut">Criar Donut</a>
@@ -109,38 +111,47 @@
           <p>Seu carrinho está vazio.</p>
         </div>
         <div class="items-list">
-          
-          
+
+
         </div>
         <div>
-        <div class="cart-footer">
-          <h4>Total:</h4>
-          <h4>R$ 0,00</h4>
+          <div class="cart-footer">
+            <h4>Total:</h4>
+            <h4>R$ 0,00</h4>
+          </div>
+          <div class="button-footer">
+            <button class="button-cart">
+              Finalizar Compra
+            </button>
+          </div>
         </div>
-        <div class="button-footer">
-        <button class="button-cart">
-          Finalizar Compra
-        </button>
-        </div>
-      </div>
       </div>
 
       <div class="cardapio-principal">
-        <div class="bag-div" >
+        <div class="bag-div">
           <button class="bag" onclick="toggleCartSidebar()">
-          <svg xmlns="http://www.w3.org/2000/svg" class="handbag" fill="currentColor" class="bi bi-handbag" viewBox="0 0 16 16">
-            <path d="M8 1a2 2 0 0 1 2 2v2H6V3a2 2 0 0 1 2-2m3 4V3a3 3 0 1 0-6 0v2H3.36a1.5 1.5 0 0 0-1.483 1.277L.85 13.13A2.5 2.5 0 0 0 3.322 16h9.355a2.5 2.5 0 0 0 2.473-2.87l-1.028-6.853A1.5 1.5 0 0 0 12.64 5zm-1 1v1.5a.5.5 0 0 0 1 0V6h1.639a.5.5 0 0 1 .494.426l1.028 6.851A1.5 1.5 0 0 1 12.678 15H3.322a1.5 1.5 0 0 1-1.483-1.723l1.028-6.851A.5.5 0 0 1 3.36 6H5v1.5a.5.5 0 1 0 1 0V6z"/>
-          </svg>
-        </button>
+            <svg xmlns="http://www.w3.org/2000/svg" class="handbag" fill="currentColor" class="bi bi-handbag"
+              viewBox="0 0 16 16">
+              <path
+                d="M8 1a2 2 0 0 1 2 2v2H6V3a2 2 0 0 1 2-2m3 4V3a3 3 0 1 0-6 0v2H3.36a1.5 1.5 0 0 0-1.483 1.277L.85 13.13A2.5 2.5 0 0 0 3.322 16h9.355a2.5 2.5 0 0 0 2.473-2.87l-1.028-6.853A1.5 1.5 0 0 0 12.64 5zm-1 1v1.5a.5.5 0 0 0 1 0V6h1.639a.5.5 0 0 1 .494.426l1.028 6.851A1.5 1.5 0 0 1 12.678 15H3.322a1.5 1.5 0 0 1-1.483-1.723l1.028-6.851A.5.5 0 0 1 3.36 6H5v1.5a.5.5 0 1 0 1 0V6z" />
+            </svg>
+          </button>
         </div>
         <div class="donut-menu">
           <h2 class="menu-title">CARDÁPIO</h2>
+          <ul class="menu-options">
+            <li class="active" data-category="all">Todos</li>
+             <li data-category="donut-menu">Donuts</li>
+           <li data-category="combo">Combos</li>
+            
+          </ul>
         </div>
+        
         <div class="donut-cards">
 
-          <div class="donut-card" data-id="1">
+          <div class="donut-card donut-menu"  data-id="1">
             <div class="img-menu" style="display:flex; justify-content: center;">
-              <img src="img/donut1.png" alt="Donut 1" />
+              <img src="img/donut_chocolate.jpg" alt="Donut 1" />
             </div>
             <div class="favorite">
               <input style="display: none;" type="checkbox" id="favorite-1" name="favorite-checkbox" value="1" />
@@ -154,20 +165,21 @@
                 </svg>
               </label>
             </div>
-            <h3>Donut 1</h3>
-            <p class="p-description">Descrição do donut saboroso 1.</p>
-            <h3 class="price" >R$: 5,00</h3>
+            <h3>Donut de Chocolate</h3>
+            <p class="p-description">Donut gourmet de brigadeiro com cobertura de chocolate</p>
+            <h3 class="price">R$: 5,00</h3>
             <div class="div">
-              <button class="btn-add-to-cart" data-name="Donut 1" data-id="1" data-description="Descrição do donut saboroso 1." data-price="5.00" data-img="img/donut1.png">
+              <button class="btn-add-to-cart" data-name="Donut de Chocolate" data-id="1"
+                data-description="Donut gourmet de brigadeiro com cobertura de chocolate" data-price="5.00" data-img="img/donut_chocolate.jpg">
                 <img class="icon-phone" src="img/compras.png" />
               </button>
               <p class="added-message">Item adicionado ao carrinho</p>
             </div>
           </div>
-          
-          <div class="donut-card" data-id="2">
+
+          <div class="donut-card donut-menu"  data-id="2">
             <div class="img-menu" style="display:flex; justify-content: center;">
-              <img src="img/donut2.png" alt="Donut 2" />
+              <img src="img/donut_morango.jpg" alt="Donut 2" />
             </div>
             <div class="favorite">
               <input style="display: none;" type="checkbox" id="favorite-2" name="favorite-checkbox" value="2" />
@@ -181,11 +193,124 @@
                 </svg>
               </label>
             </div>
-            <h3>Donut 2</h3>
-            <p class="p-description">Descrição do donut saboroso 2.</p>
+            <h3>Donut de Morango</h3>
+            <p class="p-description">Donut gourmet de morango com cobertura de geleia de morango.</p>
             <h3 class="price">R$: 5,00</h3>
             <div class="div">
-              <button class="btn-add-to-cart" data-name="Donut 2" data-id="2" data-description="Descrição do donut saboroso 2." data-price="5.00" data-img="img/donut2.png">
+              <button class="btn-add-to-cart" data-name="Donut de Morango" data-id="2"
+                data-description="Donut gourmet de morango com cobertura de geleia de morango." data-price="5.00" data-img="img/donut_morango.jpg">
+                <img class="icon-phone" src="img/compras.png" />
+              </button>
+              <p class="added-message">Item adicionado ao carrinho</p>
+            </div>
+          </div>
+
+          <div class="donut-card donut-menu"  data-id="3">
+            <div class="img-menu" style="display:flex; justify-content: center;">
+              <img src="img/donut_churros.jpg" alt="Donut 3" />
+            </div>
+            <div class="favorite">
+              <input style="display: none;" type="checkbox" id="favorite-3" name="favorite-checkbox" value="3" />
+              <label for="favorite-3" class="container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-heart">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                  </path>
+                </svg>
+              </label>
+            </div>
+            <h3>Donut de Churros</h3>
+            <p class="p-description">Donut com recheio de doce de leite e cobertura com caramelo e canela</p>
+            <h3 class="price">R$: 5,00</h3>
+            <div class="div">
+              <button class="btn-add-to-cart" data-name="Donut de Churros" data-id="3"
+                data-description="Donut com recheio de doce de leite e cobertura com caramelo e canela" data-price="5.00" data-img="img/donut_churros.jpg">
+                <img class="icon-phone" src="img/compras.png" />
+              </button>
+              <p class="added-message">Item adicionado ao carrinho</p>
+            </div>
+          </div>
+
+          <div class="donut-card donut-menu"   data-id="4">
+            <div class="img-menu" style="display:flex; justify-content: center;">
+              <img src="img/donut_amendoim.jpg" alt="Donut 4" />
+            </div>
+            <div class="favorite">
+              <input style="display: none;" type="checkbox" id="favorite-4" name="favorite-checkbox" value="4" />
+              <label for="favorite-4" class="container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-heart">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                  </path>
+                </svg>
+              </label>
+            </div>
+            <h3>Donut de Chocolate e Amendoim</h3>
+            <p class="p-description">Donut com recheio de brigadeiro e cobertura de chocolate com amendoim granulado</p>
+            <h3 class="price">R$: 5,00</h3>
+            <div class="div">
+              <button class="btn-add-to-cart" data-name="Donut de Chocolate com amendoim" data-id="4"
+                data-description="Donut com recheio de brigadeiro e cobertura de chocolate com amendoim granulado" data-price="5.00" data-img="img/donut_amendoim.jpg">
+                <img class="icon-phone" src="img/compras.png" />
+              </button>
+              <p class="added-message">Item adicionado ao carrinho</p>
+            </div>
+          </div>
+
+          <div class="donut-card combo"  data-id="5">
+            <div class="img-menu" style="display:flex; justify-content: center;">
+              <img src="img/combo_50.jpeg" alt="Donut 2" />
+            </div>
+            <div class="favorite">
+              <input style="display: none;" type="checkbox" id="favorite-5" name="favorite-checkbox" value="5" />
+              <label for="favorite-5" class="container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-heart">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                  </path>
+                </svg>
+              </label>
+            </div>
+            <h3>Combo Mini Donuts com 50</h3>
+            <p class="p-description">Combo com 50 mini donuts com decoração da sua preferência</p>
+            <h3 class="price">R$: 40,00</h3>
+            <div class="div">
+              <button class="btn-add-to-cart" data-name="Combo Mini Donuts com 50" data-id="5"
+                data-description="Combo com 50 mini donuts com cobertura da sua preferência" data-price="40.00" data-img="img/combo_50.jpeg">
+                <img class="icon-phone" src="img/compras.png" />
+              </button>
+              <p class="added-message">Item adicionado ao carrinho</p>
+            </div>
+          </div>
+
+          <div class="donut-card combo"   data-id="6">
+            <div class="img-menu" style="display:flex; justify-content: center;">
+              <img src="img/combo_100.jpeg" alt="Donut 2" />
+            </div>
+            <div class="favorite">
+              <input style="display: none;" type="checkbox" id="favorite-6" name="favorite-checkbox" value="6" />
+              <label for="favorite-6" class="container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-heart">
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                  </path>
+                </svg>
+              </label>
+            </div>
+            <h3>Combo Mini Donuts com 100</h3>
+            <p class="p-description">Combo com 100 mini donuts com decoração da sua preferência</p>
+            <h3 class="price">R$: 75,00</h3>
+            <div class="div">
+              <button class="btn-add-to-cart" data-name="Combo Mini Donuts com 100" data-id="6"
+                data-description="Combo com 100 mini donuts com decoração da sua preferência" data-price="75.00" data-img="img/combo_100.jpeg">
                 <img class="icon-phone" src="img/compras.png" />
               </button>
               <p class="added-message">Item adicionado ao carrinho</p>
@@ -196,8 +321,8 @@
         <div class="form">
           <div class="form-donut">
             <form id="donutForm">
-              <h3>Cire Seu Donut Perfeito</h3>
-          
+              <h3>Crie Seu Donut Perfeito</h3>
+
               <h3>Cobertura</h3>
               <div id="cobertura" class="sabores">
                 <input type="checkbox" name="cobertura" value="Baunilha" data-price="2.00"> Baunilha</input>
@@ -205,7 +330,7 @@
                 <input type="checkbox" name="cobertura" value="Morango" data-price="2.00"> Morango</input>
                 <input type="checkbox" name="cobertura" value="Caramelo" data-price="3.00"> Caramelo</input>
               </div>
-          
+
               <h3>Recheio</h3>
               <div id="recheio">
                 <input type="checkbox" name="recheio" value="Brigadeiro" data-price="3.00"> Brigadeiro</input>
@@ -213,19 +338,19 @@
                 <input type="checkbox" name="recheio" value="Doce de leite" data-price="3.00"> Doce de leite</input>
                 <input type="checkbox" name="recheio" value="Nutella" data-price="4.00"> Nutella</input>
               </div>
-          
+
               <h3>Quantidade</h3>
               <div>
                 <button type="button" class="btn-quantity-create btn-decrement-create">-</button>
                 <input type="text" class="quantity-create" value="1" readonly />
                 <button type="button" class="btn-quantity-create btn-increment-create">+</button>
               </div>
-          
+
               <h3>Total: R$ <span id="totalPrice" style="color: #cc7f91">00,00</span></h3>
               <button class="btn-form" style="border: none;" id="addToCart">Adicionar no carrinho</button>
             </form>
           </div>
-          
+
         </div>
       </div>
 
@@ -233,6 +358,7 @@
   </div>
 
   <footer>
+    
     <div class="icons-footer">
       <p>Rua dos Donuts, 1234 - Cidade dos Doces</p>
       <p>Telefone: (11) 1234-5678</p>
@@ -257,7 +383,6 @@
             </g>
           </svg>
         </a>
-        <!-- WhatsApp Button -->
         <a href="#" class="social-button whatsapp-footer">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -299,6 +424,39 @@
   <script src="/js/form-donut.js"></script>
   <script src="/js/total-price.js"></script>
 
+
 </body>
 
 </html>
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+  // Selecionar todos os itens de menu
+  const menuItems = document.querySelectorAll('.menu-options li');
+  const cards = document.querySelectorAll('.donut-card');
+
+  // Adicionar evento de clique a cada item do menu
+  menuItems.forEach(function(menuItem) {
+    menuItem.addEventListener('click', function() {
+      const selectedCategory = this.getAttribute('data-category');
+
+      // Remover a classe 'active' de todos os itens do menu
+      menuItems.forEach(function(item) {
+        item.classList.remove('active');
+      });
+
+      // Adicionar a classe 'active' ao item selecionado
+      this.classList.add('active');
+
+      // Mostrar ou esconder cartões baseados na categoria selecionada
+      cards.forEach(function(card) {
+        if (selectedCategory === 'all' || card.classList.contains(selectedCategory)) {
+          card.classList.remove('hidden'); // Mostrar o cartão
+        } else {
+          card.classList.add('hidden'); // Ocultar o cartão
+        }
+      });
+    });
+  });
+});
+
+</script>

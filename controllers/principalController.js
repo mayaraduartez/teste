@@ -6,6 +6,11 @@ async function principal(req,res){
     res.render("principal.ejs");
 }
 
+async function favoritos(req,res){
+    res.render("favoritos.ejs");
+}
+
 module.exports = {
     principal,
+    favoritos,
 }
