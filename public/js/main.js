@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-  const scrollLink = document.getElementById('scroll-to-cardapio');
+  const scrollLinks = document.querySelectorAll('.scroll-to-cardapio');
   const cardapioDiv = document.querySelector('.cardapio');
 
   // Função para rolar até a div cardapio
@@ -187,8 +187,10 @@ document.addEventListener('DOMContentLoaded', function () {
     cardapioDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  // Adiciona o evento de clique ao link
-  scrollLink.addEventListener('click', scrollToCardapio);
+  // Adiciona o evento de clique para todos os links com a classe scroll-to-cardapio
+  scrollLinks.forEach(function (link) {
+    link.addEventListener('click', scrollToCardapio);
+  });
 });
 
 document.addEventListener('DOMContentLoaded', function () {

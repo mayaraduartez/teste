@@ -531,7 +531,7 @@ header {
 }
 
 .form {
-  background-color: #fff9fa;
+  background-color: #fbf1f3;
   display: flex;
   justify-content: center;
 }
@@ -752,7 +752,7 @@ footer>div {
 }
 
 .cardapio{
-  background-color: #fff9fa;
+  background-color: #fbf1f3;
   display: flex;
   flex-direction: row-reverse;
 }
