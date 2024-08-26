@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 
-
   // Função para incrementar a quantidade
   function incrementQuantity(cartItem) {
     const quantityInput = cartItem.querySelector('.quantity');
@@ -127,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
+//rola para footer
 function scrollToFooter() {
   const footerSection = document.querySelector('footer');
   footerSection.scrollIntoView({ behavior: 'smooth' });
@@ -141,19 +140,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
- //// Selecionar o elemento do rodapé
- function scrollToFooter() {
-  const footerSection = document.querySelector('footer'); 
-  footerSection.scrollIntoView({ behavior: 'smooth' });
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  const phoneIcon = document.querySelector('.icon-phone');
-  phoneIcon.addEventListener('click', (event) => {
-    event.preventDefault();
-    scrollToFooter();
-  });
-});
 
 //rolar para a bag
 function scrollToCart() {
@@ -181,13 +167,12 @@ document.addEventListener('DOMContentLoaded', function () {
   const scrollLinks = document.querySelectorAll('.scroll-to-cardapio');
   const cardapioDiv = document.querySelector('.cardapio');
 
-  // Função para rolar até a div cardapio
   function scrollToCardapio(event) {
-    event.preventDefault(); // Impede o comportamento padrão do link
+    event.preventDefault(); 
     cardapioDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  // Adiciona o evento de clique para todos os links com a classe scroll-to-cardapio
+
   scrollLinks.forEach(function (link) {
     link.addEventListener('click', scrollToCardapio);
   });
@@ -207,36 +192,6 @@ document.addEventListener('DOMContentLoaded', function () {
   scrollLink.addEventListener('click', scrollToCardapio);
 });
 
-//atualiza total do form
-document.querySelector('.btn-increment-create').addEventListener('click', function() {
-  modifyQuantity(1);
-});
-
-document.querySelector('.btn-decrement-create').addEventListener('click', function() {
-  modifyQuantity(-1);
-});
-
-function modifyQuantity(amount) {
-  const quantityInput = document.querySelector('.quantity-create');
-  let currentQuantity = parseInt(quantityInput.value);
-  const totalPriceElement = document.getElementById('totalPrice');
-
-  currentQuantity += amount;
-  
-  if (currentQuantity < 1) {
-    currentQuantity = 1;
-  }
-
-  quantityInput.value = currentQuantity;
-
-  // Pega o valor total atual (removendo "R$ " e substituindo "," por ".")
-  let currentTotal = parseFloat(totalPriceElement.innerText.replace('R$ ', '').replace(',', '.'));
-
-  // Atualiza o total multiplicando pelo número de donuts
-  const newTotal = (currentTotal / (currentQuantity - amount)) * currentQuantity;
-  
-  totalPriceElement.innerText = `R$ ${newTotal.toFixed(2).replace('.', ',')}`;
-}
 
 //filtro do menu
 document.addEventListener('DOMContentLoaded', function() {
