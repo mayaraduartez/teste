@@ -3,12 +3,14 @@ const path = require("path");
 
 
 async function principal(req,res){
-    res.render("principal.ejs");
+    res.render("principal/principal.ejs");
 }
 
 async function favoritos(req,res){
-    res.render("favoritos.ejs");
+    res.render("users/favoritos.ejs");
 }
+
+
 
 module.exports = {
     principal,
