@@ -153,21 +153,6 @@ nav a {
   color: #000;
 }
 
-
-
-label {
-
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 10px 15px 10px 10px;
-  cursor: pointer;
-  user-select: none;
-  border-radius: 10px;
-  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
-  color: black;
-}
-
 input .favorite {
   display: none;
 }
@@ -940,15 +925,6 @@ footer>div {
   color: #c23350;
 }
 
-.principal {
-  width: 100vw; 
-  background-color: #f8f8f8;
-  padding: 20px; 
-  box-sizing: border-box; 
-  min-height: 69.2vh;
-}
-
-
 a {
   text-decoration: none;
   color: inherit;
@@ -985,7 +961,18 @@ a {
   border-radius: 5px;
 }
 
+.favorite label {
 
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 15px 10px 10px;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 10px;
+  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+  color: black;
+}
 
 .remover-favorito {
   width: 50px;
@@ -1060,4 +1047,166 @@ a {
     opacity: 1;
   }
 }
+
+.principal {
+  width: 100vw; 
+  background-color: #f8f8f8;
+  padding: 20px; 
+  box-sizing: border-box; 
+  min-height: 69.2vh;
+}
+
+.perfil{
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.dados-perfil{
+  width: 50vw;
+  height: 70vh;
+  background-color: #ffff;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.form-dados {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  min-height: 100%; 
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+}
+
+.column {
+  flex: 1 1 48%;
+  display: flex;
+  flex-direction: column;
+}
+
+.column.small {
+  flex: 1 1 20%;
+}
+
+.dados-perfil label {
+  color: #757272;
+  margin-bottom: 5px;
+}
+
+.form-dados input[type="text"], 
+.form-dados input[type="date"] {
+  padding: 12px 15px;
+  margin: 10px 0; 
+  border: none;
+  border-radius: 5px;
+  color: #333;
+  width: 90%;
+  background-color: #f3f3f3;
+}
+
+.form-dados input[type="text"]::placeholder, 
+.form-dados input[type="date"]::placeholder {
+  color: #888;
+}
+
+.form-dados input[type="text"]:focus, 
+.form-dados input[type="date"]:focus {
+  background-color: #d5d5d5;
+  outline: none;
+}
+
+.button-row {
+  margin-top: auto;
+  display: flex;
+  justify-content: center; 
+}
+
+.form-dados button {
+  padding: 12px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  width: 50%;
+}
+
+.form-dados button:hover {
+  background-color: #45a049;
+}
+
+.form-dados button:active {
+  background-color: #3e8e41;
+}
+
+.form-dados button:focus {
+  outline: none;
+  box-shadow: 0 0 5px #4CAF50;
+}
+
+
+.foto {
+  position: relative;
+  padding: 20px;
+  width: 15vw;
+  height: auto;
+  background-color: #ffff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.foto-container {
+  position: relative;
+  display: inline-block; 
+}
+
+.foto-perfil {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ccc;
+}
+
+.edit-icon {
+  position: absolute;
+  bottom: 10px; 
+  right: 10px; 
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.edit-icon svg {
+  fill: rgb(136, 135, 135); 
+  width: 24px; 
+  height: 24px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+h2 {
+  margin-top: 15px;
+  font-size: 150%;
+  width: 100%;
+  color: #757272;
+}
+
+
 
