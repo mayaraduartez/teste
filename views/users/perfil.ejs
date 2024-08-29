@@ -45,8 +45,9 @@
         </label>
         <input type="file" id="fileUpload" name="profilePicture" accept="image/*" onchange="loadFile(event)" />
       </div>
-      <div style="display: flex; justify-content: center;">
+      <div class="info-profile">
       <h2>Mayara Duarte</h2>
+      <button class="btn-logout" type="submit">Logout</button>
     </div>
     </div>
     
@@ -120,7 +121,6 @@
             </g>
           </svg>
         </a>
-        <!-- WhatsApp Button -->
         <a href="#" class="social-button whatsapp-footer">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -165,10 +165,4 @@
 </body>
 
 </html>
-<script>
-  function loadFile(event) {
-  const image = document.getElementById('profileImage');
-  image.src = URL.createObjectURL(event.target.files[0]);
-}
 
-</script>
